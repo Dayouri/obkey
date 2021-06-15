@@ -32,7 +32,10 @@ def die(widget, data=None):
 	gtk.main_quit()
 
 # get rc file
-path = os.getenv("HOME") + "/.config/openbox/rc.xml"
+in_LXDE = os.environ.get("DESKTOP_SESSION") in ["lxde", "lubuntu"]
+rc_file_name = "rc.xml"
+if in_LXDE: rc_file_name="lxde-"+rc_file_name
+path = os.getenv("HOME") + "/.config/openbox/" + rc_file_name
 if len(sys.argv) == 2:
 	path = sys.argv[1]
 
